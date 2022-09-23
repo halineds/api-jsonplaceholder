@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "https://jsonplaceholder.typicode.com";
+const API_URL = "https://jsonplaceholder.typicode.com/";
 
 export const AllPostsData = async () => {
   try {
@@ -24,5 +24,21 @@ export const PostDetailData = async (id) => {
       return await axios.post(API_URL + "posts", data);
     } catch (error) {
       console.log("Error while calling NewPost api", error.message);
+    }
+  };
+
+  export const EditPostData = async (id, post) => {
+    try {
+      return await axios.put(`${API_URL}posts/${id}`,post);
+    } catch (error) {
+      console.log("Error while calling EditPost api", error.message);
+    }
+  };
+
+  export const DeletePostData = async (id) => {
+    try {
+      return await axios.delete(`${API_URL}posts/${id}`);
+    } catch (error) {
+      console.log("Error while calling deletePost api", error.message);
     }
   };

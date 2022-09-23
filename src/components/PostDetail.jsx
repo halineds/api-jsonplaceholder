@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { styled } from "@mui/material";
 import { useParams } from "react-router-dom";
 
 import { PostDetailData } from "../service/api";
@@ -7,7 +6,7 @@ import { PostDetailData } from "../service/api";
 const PostDetail = () => {
   const { id } = useParams();
 
-  const [post, setPost] = useState({});
+  const [post, setPost] = useState([]);
 
   useEffect(() => {
     async function getData() {

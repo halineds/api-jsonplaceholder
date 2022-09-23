@@ -6,8 +6,9 @@ import {
   TableRow,
   TableCell,
   styled,
+  Button
 } from "@mui/material";
-
+import {Link} from 'react-router-dom';
 import { AllPostsData } from "../service/api";
 const StyledTable = styled(Table)`
   width: 90%;
@@ -54,6 +55,13 @@ const AllPosts = () => {
             <a href={`/post/${post.id}`}>{post.title}</a>
             </TableCell>
             <TableCell>{post.body}</TableCell>
+            <TableCell>
+              <Button variant="contained" 
+              style= {{marginRight: 10}} component={Link} 
+              to={`/edit/${post.id}`}> Edit </Button>
+              <Button variant="contained" 
+              color="secondary"> Delete </Button>
+            </TableCell>
           </TBody>
         ))}
       </TableBody>

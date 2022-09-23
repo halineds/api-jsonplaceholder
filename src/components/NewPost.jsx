@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import {FormGroup, FormControl, InputLabel, Input, Typography, Button, styled} from "@mui/material"
 import { NewPostData } from '../service/api';
 
@@ -10,25 +10,34 @@ const Container = styled(FormGroup)`
     }
 `;
 
-const Newpost = () => {
-
+const NewPost = () => {
+    const[post, setPost] = useState(NewPostData);
+    useEffect(() => {
+        async function putData() {
+            const response = await NewPostData();
+            setPost(response);
+        }
+        putData();
+    }, []);
+    const onValueChange=(e) => {
+        setPost({...post,[e.target.name]: e.target.value})
+    }
+    const onSubmit=() => {
+        NewPostData(post)
+    }
     return (
         <Container>
             <Typography variant= "h4"> Write your post </Typography>
-            <FormControl>
-                <InputLabel>Name</InputLabel>
-                <Input onChange={(e) => onValueChange(e)} name="name" />
-            </FormControl>
             <FormControl>
                 <InputLabel>Title</InputLabel>
                 <Input onChange={(e) => onValueChange(e)} name="title" />
             </FormControl>
             <FormControl>
                 <InputLabel>Message</InputLabel>
-                <Input onChange={(e) => onValueChange(e)} name="message" />
+                <Input onChange={(e) => onValueChange(e)} name="body" />
             </FormControl>
             <FormControl>
-                <Button variant="contained"> Add Post </Button>
+                <Button variant="contained" onClick={onSubmit}> Add Post </Button>
             </FormControl>
         </Container>
     );
