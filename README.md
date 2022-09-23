@@ -1,4 +1,4 @@
-# Criação de um projeto front-end utilizando Javascript + React +  Material UI, consumindo a [API pública](https://jsonplaceholder.typicode.com/) .
+# Criação de um projeto front-end utilizando Javascript + React +  Material UI, consumindo a API pública [jsonplaceholder](https://jsonplaceholder.typicode.com/) .
 
 
 
