@@ -9,7 +9,7 @@ import {
   Button
 } from "@mui/material";
 import {Link} from 'react-router-dom';
-import { AllPostsData } from "../service/api";
+import { AllPostsData} from "../service/api";
 const StyledTable = styled(Table)`
   width: 90%;
   margin: 50px auto 0 auto;
@@ -36,6 +36,8 @@ const AllPosts = () => {
     }
     getData();
   }, []);
+
+
   return (
     <Table>
       <TableHead>
@@ -59,8 +61,10 @@ const AllPosts = () => {
               <Button variant="contained" 
               style= {{marginRight: 10}} component={Link} 
               to={`/edit/${post.id}`}> Edit </Button>
-              <Button variant="contained" 
-              color="secondary"> Delete </Button>
+              
+              <Button variant="contained" color="secondary"
+              style= {{marginRight: 10}} component={Link} 
+              to={`/delete/${post.id}`}> Delete </Button>
             </TableCell>
           </TBody>
         ))}
