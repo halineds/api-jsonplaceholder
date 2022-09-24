@@ -13,8 +13,7 @@ const Navbar = () => {
     return (
         <Header position="static">
             <Toolbar>
-                <Tabs to="/"> Code for Interview</Tabs>
-                <Tabs to="/posts"> All posts </Tabs>
+                <Tabs to="/"> All posts </Tabs>
                 <Tabs to = "/new"> New post </Tabs>
             </Toolbar>
         </Header>

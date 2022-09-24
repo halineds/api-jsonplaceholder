@@ -6,10 +6,14 @@ import {
   TableRow,
   TableCell,
   styled,
-  Button
+  Button,
+  Dialog,
+  DialogActions,
+  DialogTitle,
+  ButtonGroup
 } from "@mui/material";
 import {Link} from 'react-router-dom';
-import { AllPostsData} from "../service/api";
+import { AllPostsData, DeletePostData} from "../service/api";
 const StyledTable = styled(Table)`
   width: 90%;
   margin: 50px auto 0 auto;
@@ -28,7 +32,11 @@ const TBody = styled(TableRow)`
   }
 `;
 const AllPosts = () => {
+
   const [posts, setPosts] = useState([]);
+
+  const [open, setOpen] = useState(false);
+
   useEffect(() => {
     async function getData() {
       const response = await AllPostsData();
@@ -37,7 +45,19 @@ const AllPosts = () => {
     getData();
   }, []);
 
+    const handleClickOpen = () => {
+      setOpen(true);
+    };
+  
+    const handleClose = () => {
+      setOpen(false);
+    };
 
+    const handleDelete = async (id) => {
+      await DeletePostData(id)
+      handleClose();
+    };
+   
   return (
     <Table>
       <TableHead>
@@ -58,13 +78,32 @@ const AllPosts = () => {
             </TableCell>
             <TableCell>{post.body}</TableCell>
             <TableCell>
+            <ButtonGroup variant="outlined" aria-label="outlined button group">
               <Button variant="contained" 
               style= {{marginRight: 10}} component={Link} 
               to={`/edit/${post.id}`}> Edit </Button>
               
-              <Button variant="contained" color="secondary"
-              style= {{marginRight: 10}} component={Link} 
-              to={`/delete/${post.id}`}> Delete </Button>
+                <Button variant="contained" color="secondary"
+                style= {{marginRight: 10}} component={Link}  
+                onClick={handleClickOpen}> Delete </Button>
+
+                <Dialog
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+                >
+                  <DialogTitle id="alert-dialog-title">
+                    {"Are you sure about that?"}
+                  </DialogTitle>
+                  <DialogActions>
+                    <Button onClick={handleClose}>No</Button>
+                    <Button onClick={() => handleDelete(post.id)} autoFocus>
+                      Yes
+                    </Button>
+                  </DialogActions>
+                </Dialog>
+              </ButtonGroup>
             </TableCell>
           </TBody>
         ))}
