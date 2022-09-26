@@ -5,6 +5,7 @@ import AllPosts from './components/AllPosts';
 import NewPost from './components/NewPost';
 import EditPost from './components/EditPost';
 import PostDetail from './components/PostDetail';
+import Comments from './components/Comments';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 
   function App () {
@@ -16,6 +17,7 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom';
         <Route path="/post/:id" element={<PostDetail />} />
         <Route path="/new" element={<NewPost />} />
         <Route path="/edit/:id" element={<EditPost />} />
+        <Route path="/comments" element={<Comments />} />
       </Routes>
     </BrowserRouter>
   );

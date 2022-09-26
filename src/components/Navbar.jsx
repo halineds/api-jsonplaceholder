@@ -15,6 +15,7 @@ const Navbar = () => {
             <Toolbar>
                 <Tabs to="/"> All posts </Tabs>
                 <Tabs to = "/new"> New post </Tabs>
+                <Tabs to="/comments"> Comments </Tabs>
             </Toolbar>
         </Header>
     )

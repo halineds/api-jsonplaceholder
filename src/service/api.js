@@ -42,3 +42,12 @@ export const PostDetailData = async (id) => {
       console.log("Error while calling deletePost api", error.message);
     }
   };
+
+  export const CommentsPostData = async () => {
+    try {
+      const response = await axios.get(API_URL + "comments");
+      return response.data;
+    } catch (error) {
+      console.log("Error while calling Comments api", error.message);
+    }
+  };
